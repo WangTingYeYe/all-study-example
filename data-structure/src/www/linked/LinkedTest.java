@@ -14,10 +14,51 @@ public class LinkedTest {
 
 
     /**
-     * 链表翻转
+     * 链表中环的检测
      */
     @Test
-    public void reversal() {
+    public void annulusCheck() {
+        Node node1 = new Node(null, "1");
+        Node node2 = new Node(node1, "2");
+        Node node3 = new Node(node2, "3");
+        Node node4 = new Node(node3, "4");
+        Node node5 = new Node(node4, "5");
+        Node node6 = new Node(node5, "6");
+
+        /**
+         * 快指针每次 +2
+         * 慢指针每次 +1
+         * 快指针转两圈 慢指针转一圈 肯定能相遇 只要他两相遇肯定  有环
+         *
+         */
+//        node1.setNext(node4);
+
+        Node fastNode = node6;
+        Node slowNode = node6;
+
+        while (true) {
+            fastNode=fastNode.getNext();
+            slowNode=slowNode.getNext();
+
+            if(fastNode==null || slowNode ==null || fastNode.getNext()==null){
+                System.out.println("没有环形");
+                return;
+            }
+            fastNode= fastNode.getNext();
+
+            if(slowNode ==fastNode){
+                System.out.println("有环形");
+                break;
+            }
+
+        }
+    }
+
+    /**
+     * 单链表翻转
+     */
+    @Test
+    public void reversal1() {
         Node headerNode = null;
         Node node1 = new Node(null, "1");
         Node node2 = new Node(node1, "2");
