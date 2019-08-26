@@ -1,0 +1,24 @@
+@startuml
+
+abstract class HouseBuilder
+HouseBuilder : house House
+HouseBuilder : buildBasic()
+HouseBuilder : buildWalls()
+HouseBuilder : roofed()
+
+
+class BigHouseBuilder
+class SmallHouseBuilder
+class House
+class Client
+
+class HouseDirector
+HouseDirector :  House buildHouse()
+
+HouseBuilder <|-- BigHouseBuilder
+HouseBuilder <|-- SmallHouseBuilder
+
+HouseBuilder -* House
+HouseDirector --* HouseBuilder
+Client --* HouseDirector
+@enduml

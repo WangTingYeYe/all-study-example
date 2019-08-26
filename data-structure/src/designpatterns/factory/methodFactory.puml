@@ -1,0 +1,41 @@
+@startuml
+
+interface Pizz
+Pizz : preCreate()
+Pizz : createIng()
+Pizz : postcreate()
+
+
+class APizz
+APizz : preCreate()
+APizz : createIng()
+APizz : postcreate()
+
+class BPizz
+BPizz : preCreate()
+BPizz : createIng()
+BPizz : postcreate()
+
+
+Pizz <|.. APizz
+Pizz <|.. BPizz
+
+
+interface PizzOrder
+PizzOrder : Pizz createPizz(pizzType : String)
+
+class APizzOrder
+APizzOrder : Pizz createPizz(pizzType : String)
+
+class BPizzOrder
+BPizzOrder : Pizz createPizz(pizzType : String)
+
+APizzOrder *-- APizz
+BPizzOrder *-- BPizz
+
+
+
+PizzOrder <|.. APizzOrder
+PizzOrder <|.. BPizzOrder
+
+@enduml

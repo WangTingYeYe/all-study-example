@@ -12,6 +12,85 @@ import org.junit.Test;
  */
 public class LinkedTest {
 
+    /**
+     * 删除倒数第n个节点
+     */
+    @Test
+    public void removeNNode() {
+        Node node1 = new Node(null, "1");
+        Node node2 = new Node(node1, "2");
+        Node node3 = new Node(node2, "3");
+        Node node4 = new Node(node3, "4");
+        Node node5 = new Node(node4, "5");
+        Node node6 = new Node(node5, "7");
+
+        Node rootNode = node6;
+        //1、倒数n个 表示 正数第 length -n 个 。如果小于 0 则 表示 不存在
+        Node curNode = node6;
+        int count = 0;
+        while (true) {
+            count++;
+            curNode = curNode.getNext();
+            if (curNode == null) {
+                break;
+            }
+        }
+        int n = 4;
+        if(n > count){
+            System.out.println("没有该元素");
+            return;
+        }
+        int index = count - n;
+        int lookUpIndex = 0;
+
+        curNode = node6;
+        while (true) {
+            if(lookUpIndex ==index){
+                System.out.println(curNode.getData());
+            }
+            lookUpIndex++;
+            curNode = curNode.getNext();
+            if (curNode == null) {
+                break;
+            }
+        }
+
+    }
+
+
+    /**
+     * 两个有序的链表合并
+     */
+    public void sortedLinkedMerge() {
+        Node node1 = new Node(null, "1");
+        Node node2 = new Node(node1, "2");
+        Node node3 = new Node(node2, "3");
+        Node node4 = new Node(node3, "4");
+        Node node5 = new Node(node4, "5");
+        Node node6 = new Node(node5, "7");
+
+
+        Node node7 = new Node(null, "1");
+        Node node8 = new Node(node7, "2");
+        Node node9 = new Node(node8, "3");
+        Node node10 = new Node(node9, "4");
+        Node node11 = new Node(node10, "5");
+        Node node12 = new Node(node11, "6");
+
+        Node curNode = node6;
+        while (node6.getNext() != null) {
+            Node inserNode = node12;
+
+            while (true) {
+                if ((int) curNode.getData() > (int) inserNode.getData()) {
+                    curNode.setNext(inserNode);
+                    break;
+                }
+                inserNode = inserNode.getNext();
+            }
+        }
+
+    }
 
     /**
      * 链表中环的检测
@@ -37,16 +116,16 @@ public class LinkedTest {
         Node slowNode = node6;
 
         while (true) {
-            fastNode=fastNode.getNext();
-            slowNode=slowNode.getNext();
+            fastNode = fastNode.getNext();
+            slowNode = slowNode.getNext();
 
-            if(fastNode==null || slowNode ==null || fastNode.getNext()==null){
+            if (fastNode == null || slowNode == null || fastNode.getNext() == null) {
                 System.out.println("没有环形");
                 return;
             }
-            fastNode= fastNode.getNext();
+            fastNode = fastNode.getNext();
 
-            if(slowNode ==fastNode){
+            if (slowNode == fastNode) {
                 System.out.println("有环形");
                 break;
             }

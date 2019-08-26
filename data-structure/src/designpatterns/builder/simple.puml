@@ -1,0 +1,30 @@
+@startuml
+
+abstract class AbstractHouse
+AbstractHouse : build()
+AbstractHouse : buildBase()
+AbstractHouse : buildWalls()
+AbstractHouse : roofed()
+
+class BigHouse
+BigHouse : build()
+BigHouse : buildBase()
+BigHouse : buildWalls()
+BigHouse : roofed()
+
+class SmallHose
+SmallHose : build()
+SmallHose : buildBase()
+SmallHose : buildWalls()
+SmallHose : roofed()
+
+
+class Client
+Client --> AbstractHouse
+
+AbstractHouse <|-- SmallHose
+AbstractHouse <|-- BigHouse
+
+
+
+@enduml

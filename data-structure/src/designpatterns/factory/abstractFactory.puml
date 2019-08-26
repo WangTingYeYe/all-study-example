@@ -1,0 +1,45 @@
+@startuml
+
+interface Pizz
+Pizz : preCreate()
+Pizz : createIng()
+Pizz : postcreate()
+
+class APizz
+APizz : preCreate()
+APizz : createIng()
+APizz : postcreate()
+
+class BPizz
+BPizz : preCreate()
+BPizz : createIng()
+BPizz : postcreate()
+
+
+Pizz <|.. APizz
+Pizz <|.. BPizz
+
+interface PizzFactory
+PizzFactory : Pizz createPizz(pizzType : String)
+note top: 可以生产不同产地的 A、B .. Pizz
+class XPizzFactory
+XPizzFactory : Pizz createPizz(pizzType : String)
+note left: 代表Y地区的工厂
+
+class YPizzFactory
+YPizzFactory : Pizz createPizz(pizzType : String)
+note right: 代表Y地区的工厂
+
+
+PizzFactory <|.. XPizzFactory
+PizzFactory <|.. YPizzFactory
+
+XPizzFactory o--  Pizz
+YPizzFactory o--  Pizz
+
+
+PizzOrder o-- PizzFactory
+PizzOrder : pizzFactory PizzFactory
+PizzOrder : createPizz(pizzType : String)
+
+@enduml
